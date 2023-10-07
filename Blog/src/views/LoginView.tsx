@@ -7,14 +7,17 @@ import {
   Pressable,
   Alert,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import StylesUtils from "../utils/StylesUtils";
+import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useNavigation } from "@react-navigation/native";
+import { AppRouteNavigatorParamList } from "../utils/types";
 
 const LoginView = () => {
-
+  const navigation : NativeStackNavigationProp<AppRouteNavigatorParamList> = useNavigation()
   const [emailInput, onEmailInputChange] = React.useState("");
   const [passwordInput, onPasswordInputChange] = React.useState("");
-  
+
   const onLoginPress = () => {
     if (emailInput.length == 0 && passwordInput.length == 0) {
       Alert.alert("Invalid details");
@@ -59,7 +62,7 @@ const LoginView = () => {
           <Text>Don't have an account ? </Text>
           <Text
             style={styles.primaryBoldText}
-            onPress={() => {}}
+            onPress={() => navigation.navigate("Register")}
           >
             Sign Up
           </Text>
